@@ -29,7 +29,7 @@ public class MedicineServiceImpl implements MedicineService {
         log.debug("get()...");
         return MedicineList
                 .builder()
-                .bodyPartList(medicineMapper.medicineEntityListToMedicineDtoList(medicineRepository.findAll()))
+                .bodyPartList(medicineMapper.medicineEntityListToMedicineDtoList(medicineRepository.findAllByOrderByName()))
                 .build();
     }
 

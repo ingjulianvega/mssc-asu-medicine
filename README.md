@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/ingjulianvega/mssc-asu-medicine.svg?style=svg)](https://circleci.com/gh/ingjulianvega/mssc-asu-medicine)
 
-# ASU evidence type management microservice
+# ASU medicine management microservice
 
 ### BOM
 
