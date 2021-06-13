@@ -21,8 +21,8 @@ public class MedicineController implements MedicineI {
     private final MedicineService medicineService;
 
     @Override
-    public ResponseEntity<MedicineList> get() {
-        return new ResponseEntity<>(medicineService.get(), HttpStatus.OK);
+    public ResponseEntity<MedicineList> get(Boolean usingCache) {
+        return new ResponseEntity<>(medicineService.get(usingCache), HttpStatus.OK);
     }
 
     @Override

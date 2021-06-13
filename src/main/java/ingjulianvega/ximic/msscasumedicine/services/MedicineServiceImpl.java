@@ -23,9 +23,9 @@ public class MedicineServiceImpl implements MedicineService {
     private final MedicineRepository medicineRepository;
     private final MedicineMapper medicineMapper;
 
-    @Cacheable(cacheNames = "medicineListCache")
+    @Cacheable(cacheNames = "medicineListCache", condition = "#usingCache == false")
     @Override
-    public MedicineList get() {
+    public MedicineList get(Boolean usingCache) {
         log.debug("get()...");
         return MedicineList
                 .builder()

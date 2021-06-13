@@ -8,7 +8,7 @@ import ingjulianvega.ximic.msscasumedicine.web.model.MedicineList;
 import java.util.UUID;
 
 public interface MedicineService {
-    MedicineList get();
+    MedicineList get(Boolean usingCache);
 
     MedicineDto getById(UUID id);
 
