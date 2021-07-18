@@ -11,6 +11,7 @@ import ingjulianvega.ximic.msscasumedicine.web.model.MedicineList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -39,7 +40,14 @@ public class MedicineServiceImpl implements MedicineService {
         log.debug("getById()...");
         return medicineMapper.medicineEntityToMedicineDto(
                 medicineRepository.findById(id)
-                        .orElseThrow(() -> new MedicineException(ErrorCodeMessages.MEDICINE_NOT_FOUND, "")));
+                        .orElseThrow(() -> MedicineException
+                                .builder()
+                                .httpStatus(HttpStatus.BAD_REQUEST)
+                                .apiCode(ErrorCodeMessages.MEDICINE_NOT_FOUND_API_CODE)
+                                .error(ErrorCodeMessages.MEDICINE_NOT_FOUND_ERROR)
+                                .message(ErrorCodeMessages.MEDICINE_NOT_FOUND_MESSAGE)
+                                .solution(ErrorCodeMessages.MEDICINE_NOT_FOUND_SOLUTION)
+                                .build()));
     }
 
     @Override
@@ -58,7 +66,14 @@ public class MedicineServiceImpl implements MedicineService {
     public void updateById(UUID id, Medicine medicine) {
         log.debug("updateById...");
         MedicineEntity evidenceEntity = medicineRepository.findById(id)
-                .orElseThrow(() -> new MedicineException(ErrorCodeMessages.MEDICINE_NOT_FOUND, ""));
+                .orElseThrow(() -> MedicineException
+                        .builder()
+                        .httpStatus(HttpStatus.BAD_REQUEST)
+                        .apiCode(ErrorCodeMessages.MEDICINE_NOT_FOUND_API_CODE)
+                        .error(ErrorCodeMessages.MEDICINE_NOT_FOUND_ERROR)
+                        .message(ErrorCodeMessages.MEDICINE_NOT_FOUND_MESSAGE)
+                        .solution(ErrorCodeMessages.MEDICINE_NOT_FOUND_SOLUTION)
+                        .build());
 
         evidenceEntity.setName(medicine.getName());
 
